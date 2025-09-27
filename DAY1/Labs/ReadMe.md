@@ -14,7 +14,8 @@ All the relevant tools have been installed as part of Week0 tasks. All the relev
     ```bash
     git clone <repo url> <folder name to store the files>
     ```
-//add image of git clone
+    
+![](/DAY1/images/git_clone.png)
 
 ---
 
@@ -46,8 +47,9 @@ All the relevant tools have been installed as part of Week0 tasks. All the relev
     ```bash
     gtkwave <vcd file name>
     ```
-//add img of terminal
-//add image of waveform - goodmux
+![](/DAY1/images/goodmux_sim.png)
+
+![](/DAY1/images/good_mux_wave.png)
 
 ---
 
@@ -111,15 +113,16 @@ All the relevant tools have been installed as part of Week0 tasks. All the relev
     show
     ```
 
-//invoke_yosys
+![](/DAY1/images/invoke_yosys.png)
 
-//synth1
+![](/DAY1/images/goodmux_synth1.png)
 
-//synth stat
+![](/DAY1/images/goodmux_synth_stat.png)
+
 True to the design code, the synthesized circuit has the same number of primary inputs and outputs. Hence, the same testbench used for RTL simulation can be used to verify the netlist as well.
 
-//synth2
+![](/DAY1/images/goodmux_synth2.png)
 
 **After mapping to the standard cells**
 
-//goodmux_synth
+![](/DAY1/images/goodmux_synth.png)

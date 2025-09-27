@@ -121,6 +121,9 @@ All the relevant tools have been installed as part of Week0 tasks. All the relev
 
 True to the design code, the synthesized circuit has the same number of primary inputs and outputs. Hence, the same testbench used for RTL simulation can be used to verify the netlist as well.
 
+Verification of netlist:
+![](/DAY1/images/verify_synth.png)
+
 ![](/DAY1/images/goodmux_synth2.png)
 
 **After mapping to the standard cells**

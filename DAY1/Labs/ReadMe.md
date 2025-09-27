@@ -48,3 +48,78 @@ All the relevant tools have been installed as part of Week0 tasks. All the relev
     ```
 //add img of terminal
 //add image of waveform - goodmux
+
+---
+
+# Introduction to Yosys - Labs
+
+
+**Aim:** Synthesis of `good_mux.v`
+
+1. Invoke yosys
+    ```
+    yosys
+    ```
+2. Read the `.lib` file:
+
+    ```bash
+    read_liberty -lib <path to .lib>
+    ```
+
+   This imports the standard cells from the library file.
+
+3. Read design file:
+
+    ```bash
+    read_verilog <design_file_name>.v
+    ```
+
+4. Synthesis:
+
+    ```bash
+    synth -top <module name of the design to be synthesized>
+    ```
+
+5. If the design contains DFFs, then:
+
+    ```bash
+    dfflibmap -liberty <dfflib file path>
+    ```
+
+   This is done to map the DFFs to the standard cells that are sometimes stored in a different file.
+
+6. Then generate the netlist:
+
+    ```bash
+    abc -liberty <path to .lib file>
+    ```
+
+   This generates the netlist by mapping the standard cells from `.lib` file to the synthesized circuit above.
+
+7. Write the netlist:
+
+    ```bash
+    write_verilog -noattr <netlist file name>.v
+    ```
+    
+   (Usually netlist file name is <module_name>_net.v)
+   Using the gvim text editor, we can view the netlist as a text.  
+   `-noattr` is used for a simplified view of the netlist.
+   
+9. To view the synthesized circuit
+    ```bash
+    show
+    ```
+
+//invoke_yosys
+
+//synth1
+
+//synth stat
+True to the design code, the synthesized circuit has the same number of primary inputs and outputs. Hence, the same testbench used for RTL simulation can be used to verify the netlist as well.
+
+//synth2
+
+**After mapping to the standard cells**
+
+//goodmux_synth

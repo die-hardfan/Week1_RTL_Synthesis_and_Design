@@ -11,7 +11,7 @@ Typically, when a circuit is powered on, the state of FFs is unknown (or garbage
 
 For example, consider the below circuit and corresponding waveform:
 
-//glitch
+![](/DAY2/images/glitch.png)
 
 ### 1. Circuit Description
    

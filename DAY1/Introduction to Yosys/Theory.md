@@ -3,7 +3,8 @@
 RTL design _describes_ how the required spec behaves. But our goal is to get a circuit in the end. To convert the code (representation) to hardware, synthesis is done.
 In simple words, synthesis translates RTL code to gate-level representation using standard cells given in .lib file.
 
-//image of synthesis i/o
+![](/DAY1/images/synthflow.png)
+
 
 .lib file is one of the inputs to the synthesis process. It's basically a collection of logical modules with different flavours for each of them (slow, typical/medium, fast). It might not be an exhaustive list (that contains all possible logic modules), but its rich enough to implement any logic that can be described.
 A NAND/NOR gate, called universal gate, is sufficient to convert any logic described into circuit, but for better optimization and efficiency (and to makes life easier), .lib contains a wide variety of standard cells. The richer the library, more options for optimization available.
@@ -12,7 +13,8 @@ A NAND/NOR gate, called universal gate, is sufficient to convert any logic descr
 ## Why different flavours of gates?
 
 Consider the below circuit: 
-//image of 2dff and comb logic
+
+![](/DAY1/images/dff_comb.png)
 
 The input data (D) is transferred to output (Out) at clock edge. So total delay taken for this to occur depends on 
 - time taken for change in clk signal to reflect at Q1 (t_clk_q1)
@@ -34,8 +36,7 @@ From this we conclude that only slow cells or only fast cells can not satisfy ne
 
 Simply, fast cells have less cell delay and slow cells more. Typical cells have an intermediate delay value.
 Delay (or cell delay) means the amount of time taken for the change in input to reflect in the output of the cell. The time taken to charge or discharge the parasitic capacitance in the cell causes the delay.
-So the faster the input charges the capacitance, the less the delay. The rate of charging by the input of a cell is driven by the output of the previous cell. To charge or discharge the capacitance fast, we need transistors capable of sourcing more current, which requires wide transistors according to the given equation.
-//include the drain current equation for mosfet here
+So the faster the input charges the capacitance, the less the delay. The rate of charging by the input of a cell is driven by the output of the previous cell. To charge or discharge the capacitance fast, we need transistors capable of sourcing more current, which requires wide transistors since I_D is directly proportional to W (for MOSFETs).
 In short, wide transistors means less delay but this consumes more area (cuz more W) and power (cuz more I). 
 This proposes a tradeoff between speed of the cell and area, power consumed. 
 
@@ -78,7 +79,7 @@ Hence, the guidance provided to the tool is very important, and this guidance is
 - Finally, the tool writes a **netlist**.  
 - A netlist is basically a big list of gates and wires that shows how everything is connected.  
 
-//add image of synth_mapping
+![](/DAY1/images/synth_mapping.png)
 
 ---
 ## Labs

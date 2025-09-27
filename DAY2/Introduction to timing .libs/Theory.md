@@ -51,6 +51,9 @@ All these changes must be accommodated during simulation and compensated for, el
 > **KEY:** The functionality of the design must be maintained across PVT variations to produce a reliable and robust product.
 
 In a `.lib` file, all such information about the standard cells in general and specific to certain logic modules are given. Within the definition of a cell, input-combination-specific leakage power, cell area, pin-specific capacitance, power, timing, etc., are noted.
+Example:
+![](/DAY2/images/and2_0_first.png)
+
 
 There are different **flavours** of the same logic cell (e.g. AND gate with different number of inputs, varying area, power, etc).
 Under each cell definition, the leakage power information for all the combinations of inputs possible, power port information, pin information, timing information etc is described.

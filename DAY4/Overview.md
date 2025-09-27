@@ -12,6 +12,10 @@ Since netlist is derived from the RTL code, they must be logically equivalent, t
 2.	RTL code simulation is not timing aware. For a timing aware simulation (since in real world, it needs to be considered), GLS can be used. 
 To perform delay annotated GLS, we need to have Verilog models (of standard cells) that have delay information along with the functional definition. Without the it, a functional validation of the synthesized circuit can be performed.
 
+GLS flow using iverilog:
+
+![](/DAY4/images/glsflow.png)
+
 Gate level Verilog model is required to give the definition of the standard cells that are referenced in the netlist to the simulator.
 
 ## REASONS FOR SIMULATION-SYNTHESIS MISMATCH

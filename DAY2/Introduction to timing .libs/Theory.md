@@ -35,7 +35,7 @@ gedit <.lib file name>
 This library contains 130nm (smallest feature size, or commonly called tech/process node) standard cells that have typical (`tt`) speed (due to process variation), work at 25°C at a voltage level of 1.80 volts.
 The relevant things are highlighted in the below image.
 
-//libfile
+![](/DAY2/images/libfile.png)
 
 PVT are the 3 important conditions that need to be met for the synthesized design/circuitry on chip/silicon to work.
 
@@ -56,7 +56,7 @@ There are different **flavours** of the same logic cell (e.g. AND gate with diff
 Under each cell definition, the leakage power information for all the combinations of inputs possible, power port information, pin information, timing information etc is described.
 Between the different flavours of same logic cell (2 input AND gate), we can see the difference in power or area, as shown below:
 
-//compare
+![](/DAY2/images/compare.png)
 
 > In short, a library file is rich in different logic cells and its variants for better optimization of the circuit.
 

@@ -54,14 +54,16 @@ write_verilog -noattr multiple_module_heir.v
 show multiple_modules # show <module_name> is the command for showing a particular module when multiple are present
 ```
 
-//multmodsynth
+![](/DAY2/images/multmod_synth.png)
 
 From the statistics, we see that hierarchy is preserved in the multiple_modules module. This can be seen in the schematic and the netlist as shown below:
 
-//heir mult mod
-Here we can see that submodules are synthesized as AND and OR gate respectively.
+![](/DAY2/images/heir_mult_mod.png)
 
-//mult mod synth
+![](/DAY2/images/heir_mult_mod_netlist.png)
+
+Here we can see that submodules are synthesized as AND and OR gate respectively.
+![](/DAY2/images/mult_mod_synth.png)
 
 To flatten the circuit (remove the heirarchy), use the following code within yosys environment:
 ```bash
@@ -72,8 +74,9 @@ show     #no need of module name since there is only 1 overall module in a flatt
 ```
 From below images, we see that submodules are replaced by their synthesized counterparts.
 
-//multmod flat
-//compare heir flat
+![](/DAY2/images/multmod_flat.png)
+
+![](/DAY2/images/compare_heir_flat.png)
 
 ## Sub-module level synthesis 
 Given a large design, we can synthesize each sub-module at a time, using the command:
@@ -83,11 +86,11 @@ synth -top <sub_module_name>
 ```
 Basically, this command synthesizes only the module mentioned as top. The following images show this in practice:
 
-//submod_synth
+![](/DAY2/images/submod_synth.png)
 
 The statistics show the inference of 1 AND gate only, which proves the point.
 
-//submod_synth_stat
+![](/DAY2/images/submod_synth_stat.png)
 
 ---
 
@@ -97,39 +100,39 @@ The statistics show the inference of 1 AND gate only, which proves the point.
 
 We're looking into 4 varieties of FFs - Async reset, sync reset, async set and async reset with sync reset. The code for each of them is given below:
 
-//various dff design
+![](/DAY2/images/various_dff_design.png)
 
 Async reset/set: The reset/set signal is included in the sensitivity list, so that the always block of code is triggered when they are asserted, as show in the waveform below.
 
-//ares_sim
+![](/DAY2/images/ares_sim.png)
 
-//ares_1
+![](/DAY2/images/ares_1.png)
 When async_res is asserted, irrespective of the clk edge, q becomes 0.
 
-//ares_2
+![](/DAY2/images/ares_2.png)
 But when async_res is deasserted, q waits till the next clk edge to follow d.
 
 This is because in the design code, the sensitivity list includes 'posedge' of async_res, so only the assertion is truly asynchronous in nature. The always block is not sensitive to the de-assertion event of async_res since it is not included in the sensitivity list, hence, it follows the clk edge.
 
 Similarly, for the Asynchronous set, we see the following images:
 
-//sres_sim
+![](/DAY2/images/sres_sim.png)
 
-//sres
+![](/DAY2/images/sres.png)
 
-//sres_2
+![](/DAY2/images/sres_2.png)
 
 Sync reset: The reset signal is not included in the sensitivity list, hence it gets triggered only at the clk edge after it has been asserted. The de-assertion is also synchronous in nature.
 
-//syncresetsim
+![](/DAY2/images/sync_reset_sim.png)
 
-//sres_1
+![](/DAY2/images/sres_1.png)
 
 But, for an FF with both async_res and sync_res, it is important to note that because of the code (where async_res is checked before sync_res), async_res is given priority over sync_res. So, when async_res is high, irrespective of sync_res, q is 0, as show below:
 
-//ares_sres_sim
+![](/DAY2/images/ares_sres_sim.png)
 
-//ares_sres_1
+![](/DAY2/images/ares_sres_1.png)
 
 ---
 
@@ -149,29 +152,29 @@ show
 
 Async reset DFF: 
 
-//ares_s1
+![](/DAY2/images/ares_s1.png)
 
-//ares_stat
+![](/DAY2/images/ares_stat.png)
 
-//ares_synth
+![](/DAY2/images/ares_synth.png)
 
 Sync reset DFF: 
 
-//sres_stat
+![](/DAY2/images/sres_stat.png)
 
-//sres_synth
+![](/DAY2/images/sres_stat.png)
 
 Async set DFF: 
 
-//aset_stat
+![](/DAY2/images/aset_stat.png)
 
-//aset_synth
+![](/DAY2/images/aset_synth.png)
 
 Async res Sync res DFF: 
 
-//ares_sres_stat
+![](/DAY2/images/ares_sres_stat.png)
 
-//ares_sres_synth
+![](/DAY2/images/ares_sres_synth.png)
 
 ---
 
@@ -189,11 +192,11 @@ endmodule
 
 Synthesizing it, we get:
 
-//mult2_stat
+![](/DAY2/images/mult2_stat.png)
 
 From the above image we see that, when 'abc' command is executed, no cell is inferred/mapped because it's not required.
 
-//mult2_synth
+![](/DAY2/images/mult2_synth.png)
 
 ---
 
@@ -209,6 +212,6 @@ endmodule
 
 Synthesizing it, we get:
 
-// mult8_stat
+![](/DAY2/images/mult8_stat.png)
 
-//mult8_synth
+![](/DAY2/images/mult8_synth.png)

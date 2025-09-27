@@ -1,5 +1,5 @@
 # Overview
-##**Aim:** 
+## **Aim:** 
 1.	Gate level simulation
 2.	Simulation-synthesis mismatch
 3.	Related labs

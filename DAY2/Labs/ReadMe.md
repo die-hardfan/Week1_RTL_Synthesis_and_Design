@@ -75,3 +75,16 @@ From below images, we see that submodules are replaced by their synthesized coun
 //multmod flat
 //compare heir flat
 
+## Sub-module level synthesis 
+Given a large design, we can synthesize each sub-module at a time, using the command:
+
+```bash
+synth -top <sub_module_name>
+```
+Basically, this command synthesizes only the module mentioned as top. The following images show this in practice:
+
+//submod_synth
+
+The statistics show the inference of 1 AND gate only, which proves the point.
+
+//submod_synth_stat

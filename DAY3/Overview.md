@@ -1,5 +1,5 @@
-## DAY 3
-**Aim:** 
+# DAY 3
+##**Aim:** 
 1.	Combination optimization techniques
 2.	Sequential optimization techniques
 3.	Unused logic optimization 
@@ -32,5 +32,4 @@ To increase the operating frequency, based on the possibility, the combinational
 ## UNUSED LOGIC OPTIMIZATION
 If any of the primary outputs of a module is completely independent of some logic that is defined in the RTL code, it is removed by the synthesis tool, as an optimization. 
 
-## RELEVANT LABS
-All the files are linked in the repo.
+

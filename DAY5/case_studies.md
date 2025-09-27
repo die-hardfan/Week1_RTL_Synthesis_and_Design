@@ -20,22 +20,22 @@ endmodule
 ```
 
 Netlist
-![](/DAY4/images/badcase_stat.png)
+![](/DAY5/images/badcase_stat.png)
 
 
-![](/DAY4/images/badcase_synth.png)
+![](/DAY5/images/badcase_synth.png)
 
 
 RTL Simulation
-![](/DAY4/images/badcase_console.png)
+![](/DAY5/images/badcase_console.png)
 
 
-![](/DAY4/images/badcase_sim.png)
+![](/DAY5/images/badcase_sim.png)
 
 
 GLS
 
-![](/DAY4/images/badcase_gls.png)
+![](/DAY5/images/badcase_gls.png)
 
 
 
@@ -59,62 +59,18 @@ endmodule
 ```
 
 Netlist
-![](/DAY4/images/badcase_stat.png)
 
-
-![](/DAY4/images/badcase_synth.png)
+![](/DAY5/images/compcase_synth.png)
 
 
 RTL Simulation
-![](/DAY4/images/badcase_console.png)
+![](/DAY5/images/compcase_sim.png)
 
-
-![](/DAY4/images/badcase_sim.png)
 
 
 GLS
 
-![](/DAY4/images/badcase_gls.png)
-
-
-
----
-
-## Complete if : comp_case.v
-
-Design code:
-```bash
-
-module comp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
-always @ (*)
-begin
-	case(sel)
-		2'b00 : y = i0;
-		2'b01 : y = i1;
-		default : y = i2;
-	endcase
-end
-endmodule
-```
-
-Netlist
-![](/DAY4/images/badcase_stat.png)
-
-
-![](/DAY4/images/badcase_synth.png)
-
-
-RTL Simulation
-![](/DAY4/images/badcase_console.png)
-
-
-![](/DAY4/images/badcase_sim.png)
-
-
-GLS
-
-![](/DAY4/images/badcase_gls.png)
-
+![](/DAY5/images/compcase_gls.png)
 
 
 ---
@@ -124,17 +80,17 @@ Not listing all the possible cases of a case constant leads to inferred latch, w
 In the code below, 2'b10 and 2'b11 cases are not defined and there is not default statement, so the simulator and synthesis tool will infer a latch. In simulation it can be seen that when sel[1] is high, the output is a constant. And its seen in GLS too, so there's no synthesis-simulation mismatch. But due to bad coding, our design to code a combinational circuit has turned into a sequential circuit which is a blunder.
 
 
-![](/DAY4/images/badcase_synth.png)
+![](/DAY5/images/badcase_synth.png)
 
 
 RTL Simulation
 
-![](/DAY4/images/badcase_sim.png)
+![](/DAY5/images/badcase_sim.png)
 
 
 GLS
 
-![](/DAY4/images/badcase_gls.png)
+![](/DAY5/images/badcase_gls.png)
 
 In the synthesized circuit, an active low enable Dlatch is used, hence the enable condition is sel[1], unlike in predicted diagram. Also, a 2:1 mux is used, with select line s as nand(sel1', sel0) = sel1 + sel0'. 
 When sel1 is 1, (for sel = 10 and 11) output is latched as en = 0.
@@ -153,17 +109,17 @@ In the below code, else condition is not given, thus creating an inferred latch.
 
 As seen in the simulation, initially, as long as i0 = 0, y is 'x' or since its previous state is unknown. Similarly, when initialised, and i0 becomes 0, y takes the value of i1 just before i0 became 0. 
 
-![](/DAY4/images/badcase_synth.png)
+![](/DAY5/images/badcase_synth.png)
 
 
 RTL Simulation
 
-![](/DAY4/images/badcase_sim.png)
+![](/DAY5/images/badcase_sim.png)
 
 
 GLS
 
-![](/DAY4/images/badcase_gls.png)
+![](/DAY5/images/badcase_gls.png)
 
 
 ## CASE 2
@@ -178,17 +134,17 @@ In the below code, else condition is not given, thus creating an inferred latch.
 
 As seen in the simulation, initially, as long as i0 = 0 and i2 = 0, y is 'x' or since its previous state is unknown. Similarly, when initialised, and i0, i2 both become 0, y takes its value just before i0 and i2 both become 0. 
 
-![](/DAY4/images/badcase_synth.png)
+![](/DAY5/images/badcase_synth.png)
 
 
 RTL Simulation
 
-![](/DAY4/images/badcase_sim.png)
+![](/DAY5/images/badcase_sim.png)
 
 
 GLS
 
-![](/DAY4/images/badcase_gls.png)
+![](/DAY5/images/badcase_gls.png)
 
 ---
 
@@ -214,7 +170,7 @@ If all the outputs are not assigned a value in every case, as in the code below,
 y is synthesized into a proper mux but x is not. Synthesis-simulation mismatch is present.
 The expected and actual circuits are as given below.
 
-![](/DAY4/images/badcase_synth.png)
+![](/DAY5/images/badcase_synth.png)
 
 ---
 

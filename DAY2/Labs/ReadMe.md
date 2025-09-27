@@ -53,17 +53,17 @@ write_verilog -noattr multiple_module_heir.v
 !gvim multiple_module_heir.v #'!' used to access terminal from within yosys
 show multiple_modules # show <module_name> is the command for showing a particular module when multiple are present
 ```
-
-![](/DAY2/images/multmod_synth.png)
+![](/DAY2/images/mult_mod_synth.png)
 
 From the statistics, we see that hierarchy is preserved in the multiple_modules module. This can be seen in the schematic and the netlist as shown below:
 
-![](/DAY2/images/heir_mult_mod.png)
+![](/DAY2/images/multmod_synth.png)
 
 ![](/DAY2/images/heir_mult_mod_netlist.png)
 
 Here we can see that submodules are synthesized as AND and OR gate respectively.
-![](/DAY2/images/mult_mod_synth.png)
+![](/DAY2/images/heir_mult_mod.png)
+
 
 To flatten the circuit (remove the heirarchy), use the following code within yosys environment:
 ```bash
@@ -157,24 +157,35 @@ Async reset DFF:
 ![](/DAY2/images/ares_stat.png)
 
 ![](/DAY2/images/ares_synth.png)
+The DFF uses is asynchronous active low reset, but our code suggests active high reset, hence an inverter is used.
 
 Sync reset DFF: 
 
 ![](/DAY2/images/sres_stat.png)
 
-![](/DAY2/images/sres_stat.png)
+![](/DAY2/images/sres_synth.png)
+Here, a nor gate is used. It can be proved as: 
+```text
+D = (sync_res | d')'
+	= sync_res' & d
+if sync_res = 0,
+D = 1 & d = d
+```
+This means, D = d when sync_res is 0, which follows the behaviour of our code.
 
 Async set DFF: 
 
 ![](/DAY2/images/aset_stat.png)
 
 ![](/DAY2/images/aset_synth.png)
+The DFF uses is asynchronous active low set, but our code suggests active high set, hence an inverter is used.
 
 Async res Sync res DFF: 
 
 ![](/DAY2/images/ares_sres_stat.png)
 
 ![](/DAY2/images/ares_sres_synth.png)
+This seems like a combination of Sync reset and Async reset DFF circuits.
 
 ---
 
@@ -197,6 +208,7 @@ Synthesizing it, we get:
 From the above image we see that, when 'abc' command is executed, no cell is inferred/mapped because it's not required.
 
 ![](/DAY2/images/mult2_synth.png)
+This means, {a[2:0], 0} --> y[3:0] (left shift by 1 basically)
 
 ---
 
@@ -215,3 +227,5 @@ Synthesizing it, we get:
 ![](/DAY2/images/mult8_stat.png)
 
 ![](/DAY2/images/mult8_synth.png)
+This is because a*9 = a*(8+1) = a<<3 + a and if a is 3 bit number, then,
+ {a[2:0], a[2:0]} --> y[5:0]

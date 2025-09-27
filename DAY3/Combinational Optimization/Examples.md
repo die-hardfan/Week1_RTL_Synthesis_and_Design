@@ -17,8 +17,9 @@ y = a&b
 ```
 
 After synthesis: 
-//optcheck
-//optcheck_synth
+![](/DAY3/images/optcheck.png)
+
+![](/DAY3/images/optcheck_synth.png)
 
 ---
 
@@ -41,8 +42,9 @@ y = a | b
 ```
 
 After synthesis: 
-//optcheck2_stat
-//optcheck2_synth
+![](/DAY3/images/optcheck2_stat.png)
+
+![](/DAY3/images/optcheck2_synth.png)
 
 ---
 
@@ -64,8 +66,9 @@ y = a&b&c
 ```
 
 After synthesis: 
-//optcheck3_stat
-//optcheck3_synth
+![](/DAY3/images/optcheck3_stat.png)
+
+![](/DAY3/images/optcheck3_synth.png)
 
 ---
 
@@ -88,8 +91,9 @@ y = a'c' + ac = (a^c)' or a xnor c
 ```
 
 After synthesis: 
-//optcheck4_stat
-//optcheck4_synth
+![](/DAY3/images/optcheck4_stat.png)
+
+![](/DAY3/images/optcheck4_synth.png)
 
 ---
 

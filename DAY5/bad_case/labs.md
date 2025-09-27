@@ -1,6 +1,6 @@
 # CASE STUDIES 
 
-## Incomplete if : bad_case.v
+## Overlapping case : bad_case.v
 
 Design code:
 ```bash

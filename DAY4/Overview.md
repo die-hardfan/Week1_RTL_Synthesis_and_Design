@@ -15,7 +15,7 @@ To perform delay annotated GLS, we need to have Verilog models (of standard cell
 
 GLS flow using iverilog:
 
-![](/DAY4/images/glsflow.png)
+![](/DAY4/images/gls_flow.png)
 
 ## REASONS FOR SIMULATION-SYNTHESIS MISMATCH
 1.	Missing sensitivity list

@@ -24,11 +24,15 @@ To check/verify whether the implementation (RTL design) adheres to given specifi
 Simulation is done by applying test vectors/stimulus to the primary inputs of the DUT (design under test) and observing its primary outputs. This requires a stimulus generator and observer, all of which together forms the **testbench**. 
 
 A testbench has no primary inputs and outputs, since all it does is apply stimulus and observe the outputs of the DUT. 
-//add image of tb here
+![](/DAY1/images/tb_setup.png)
 
 ---
 
 ### How a Simulator Works
+
+Below image describes the simulation flow in iverilog.
+
+![](/DAY1/images/iverilog_sim_flow.png)
 
 A simulator looks for the changes in inputs; when there is a change in any of the inputs, the outputs are evaluated.
 

@@ -1,5 +1,5 @@
-Introduction to WEEK 1 of the program
-## Overview:
+## Introduction to WEEK 1 of the program
+# Overview:
 
 The semiconductor industry is undergoing a major shift towards open-source toolchains and PDKs like SKY130 for chip prototyping and tapeout.
 This workshop empowers one to master Register Transfer Level (RTL) design, simulation, and synthesis using industry-aligned open-source tools.

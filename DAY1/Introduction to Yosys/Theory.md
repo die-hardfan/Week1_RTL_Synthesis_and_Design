@@ -84,4 +84,4 @@ Hence, the guidance provided to the tool is very important, and this guidance is
 ---
 ## Labs
 
-
+Synthesize the ```good_mux.v``` design using Yosys.

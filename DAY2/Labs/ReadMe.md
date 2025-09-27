@@ -30,7 +30,6 @@ endmodule
 - Outputs `y` which is the **OR** of `a` and `b`.  
 - Think of it as an **OR gate**.  
 
----
 
 ### 2. Top module: multiple_modules
 
@@ -41,8 +40,9 @@ endmodule
 - A wire called `net1` holds intermediate results.  
 - Instances of `sub_module1` and `sub_module2` are created.  
 - Final output:  
+---
 
-Next synthesize this using Yosys.
+## Synthesize this using Yosys.
 
 ```bash
 read_liberty -lib /root/week1_files/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -63,7 +63,7 @@ Here we can see that submodules are synthesized as AND and OR gate respectively.
 
 //mult mod synth
 
-Now, to flatten the circuit (remove the heirarchy), use the following code within yosys environment:
+To flatten the circuit (remove the heirarchy), use the following code within yosys environment:
 ```bash
 flatten
 write_verilog multiple_modules_flat.v

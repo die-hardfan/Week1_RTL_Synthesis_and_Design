@@ -88,3 +88,127 @@ Basically, this command synthesizes only the module mentioned as top. The follow
 The statistics show the inference of 1 AND gate only, which proves the point.
 
 //submod_synth_stat
+
+---
+
+# Various Flip Flop coding styles - Lab
+
+## Simulation 
+
+We're looking into 4 varieties of FFs - Async reset, sync reset, async set and async reset with sync reset. The code for each of them is given below:
+
+//various dff design
+
+Async reset/set: The reset/set signal is included in the sensitivity list, so that the always block of code is triggered when they are asserted, as show in the waveform below.
+
+//ares_sim
+
+//ares_1
+When async_res is asserted, irrespective of the clk edge, q becomes 0.
+
+//ares_2
+But when async_res is deasserted, q waits till the next clk edge to follow d.
+
+This is because in the design code, the sensitivity list includes 'posedge' of async_res, so only the assertion is truly asynchronous in nature. The always block is not sensitive to the de-assertion event of async_res since it is not included in the sensitivity list, hence, it follows the clk edge.
+
+Similarly, for the Asynchronous set, we see the following images:
+
+//sres_sim
+
+//sres
+
+//sres_2
+
+Sync reset: The reset signal is not included in the sensitivity list, hence it gets triggered only at the clk edge after it has been asserted. The de-assertion is also synchronous in nature.
+
+//syncresetsim
+
+//sres_1
+
+But, for an FF with both async_res and sync_res, it is important to note that because of the code (where async_res is checked before sync_res), async_res is given priority over sync_res. So, when async_res is high, irrespective of sync_res, q is 0, as show below:
+
+//ares_sres_sim
+
+//ares_sres_1
+
+---
+
+## Synthesis
+
+General flow for synthesizing any circuit with FF in it:
+Note: Here, .lib file for logic gates and FFs is the same.
+
+```bash
+read_libery <.lib path>
+read_verilog <verilog file>
+dfflibmap -liberty <path of .lib that contains FFs>  
+abc -liberty <.lib path>
+write_verilog -noattr <netlist name>
+show
+```
+
+Async reset DFF: 
+
+//ares_s1
+
+//ares_stat
+
+//ares_synth
+
+Sync reset DFF: 
+
+//sres_stat
+
+//sres_synth
+
+Async set DFF: 
+
+//aset_stat
+
+//aset_synth
+
+Async res Sync res DFF: 
+
+//ares_sres_stat
+
+//ares_sres_synth
+
+---
+
+# Interesting Optimizations in Hardware
+
+## Multiplication by 2
+
+Design code: 
+
+```bash
+module mul2 (input [2:0] a, output [3:0] y);
+	assign y = a * 2;
+endmodule
+```
+
+Synthesizing it, we get:
+
+//mult2_stat
+
+From the above image we see that, when 'abc' command is executed, no cell is inferred/mapped because it's not required.
+
+//mult2_synth
+
+---
+
+## Multiplication by 9
+
+Design code:
+
+```bash
+module mult8 (input [2:0] a , output [5:0] y);
+	assign y = a * 9;
+endmodule
+```
+
+Synthesizing it, we get:
+
+// mult8_stat
+
+//mult8_synth

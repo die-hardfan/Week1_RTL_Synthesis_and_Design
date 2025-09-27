@@ -1,5 +1,5 @@
 # DAY 3
-##**Aim:** 
+## **Aim:** 
 1.	Combination optimization techniques
 2.	Sequential optimization techniques
 3.	Unused logic optimization 

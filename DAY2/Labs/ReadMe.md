@@ -2,7 +2,7 @@
 
 Consider the following code in ```multiple_module.v``` : 
 
-```
+```bash
 module sub_module2 (input a, input b, output y);
 	assign y = a | b;
 endmodule
@@ -14,8 +14,8 @@ endmodule
 
 module multiple_modules (input a, input b, input c , output y);
 	wire net1;
-	sub_module1 u1(.a(a),.b(b),.y(net1));  //net1 = a&b
-	sub_module2 u2(.a(net1),.b(c),.y(y));  //y = net1|c ,ie y = a&b + c;
+	sub_module1 u1(.a(a),.b(b),.y(net1));  #net1 = a&b
+	sub_module2 u2(.a(net1),.b(c),.y(y));  #y = net1|c ,ie y = a&b + c;
 endmodule
 ```
 ### 1. Sub-modules
@@ -44,7 +44,7 @@ endmodule
 
 Next synthesize this using Yosys.
 
-```
+```bash
 read_liberty -lib /root/week1_files/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 read_verilog multiple_modules.v
 synth -top multiple_modules
@@ -64,7 +64,7 @@ Here we can see that submodules are synthesized as AND and OR gate respectively.
 //mult mod synth
 
 Now, to flatten the circuit (remove the heirarchy), use the following code within yosys environment:
-```
+```bash
 flatten
 write_verilog multiple_modules_flat.v
 show     #no need of module name since there is only 1 overall module in a flattened circuit

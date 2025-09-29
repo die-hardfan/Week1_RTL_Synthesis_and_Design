@@ -45,7 +45,6 @@ GLS
 
 Design code:
 ```bash
-
 module comp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
 always @ (*)
 begin
@@ -59,13 +58,17 @@ endmodule
 ```
 
 Netlist
+![](/DAY5/images/compcase_stat.png)
+
 
 ![](/DAY5/images/compcase_synth.png)
 
 
 RTL Simulation
-![](/DAY5/images/compcase_sim.png)
+![](/DAY5/images/compcase_console.png)
 
+
+![](/DAY5/images/compcase_sim.png)
 
 
 GLS
@@ -74,23 +77,44 @@ GLS
 
 
 ---
-## Incomplete case consequences
+## Incomplete case consequence
 
 Not listing all the possible cases of a case constant leads to inferred latch, with appropriate enable logic.
 In the code below, 2'b10 and 2'b11 cases are not defined and there is not default statement, so the simulator and synthesis tool will infer a latch. In simulation it can be seen that when sel[1] is high, the output is a constant. And its seen in GLS too, so there's no synthesis-simulation mismatch. But due to bad coding, our design to code a combinational circuit has turned into a sequential circuit which is a blunder.
 
+Inomplete if : comp_case.v
 
-![](/DAY5/images/badcase_synth.png)
+Design code:
+```bash
+
+module incomp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : y = i0;
+		2'b01 : y = i1;
+	endcase
+end
+endmodule
+```
+
+Netlist
+![](/DAY5/images/compcase_stat.png)
+
+
+![](/DAY5/images/compcase_synth.png)
 
 
 RTL Simulation
+![](/DAY5/images/compcase_console.png)
 
-![](/DAY5/images/badcase_sim.png)
+
+![](/DAY5/images/compcase_sim.png)
 
 
 GLS
 
-![](/DAY5/images/badcase_gls.png)
+![](/DAY5/images/compcase_gls.png)
 
 In the synthesized circuit, an active low enable Dlatch is used, hence the enable condition is sel[1], unlike in predicted diagram. Also, a 2:1 mux is used, with select line s as nand(sel1', sel0) = sel1 + sel0'. 
 When sel1 is 1, (for sel = 10 and 11) output is latched as en = 0.

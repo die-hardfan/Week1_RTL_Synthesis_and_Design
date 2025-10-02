@@ -20,15 +20,23 @@ endmodule
 ```
 
 Netlist
+<details> 
+<summary> Terminal/Console screenshot during execution </summary>
+	
 ![](/DAY5/images/badcase_stat.png)
 
+</details>
 
 ![](/DAY5/images/badcase_synth.png)
 
 
 RTL Simulation
+<details> 
+<summary> Terminal/Console screenshot during execution </summary>
+	
 ![](/DAY5/images/badcase_console.png)
 
+</details>
 
 ![](/DAY5/images/badcase_sim.png)
 
@@ -65,7 +73,13 @@ Netlist
 
 
 RTL Simulation
+<details> 
+<summary> Terminal/Console screenshot during execution </summary>
+	
 ![](/DAY5/images/compcase_console.png)
+
+</details>
+
 
 
 ![](/DAY5/images/compcase_sim.png)

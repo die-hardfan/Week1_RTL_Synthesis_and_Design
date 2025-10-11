@@ -2,7 +2,7 @@
 
 General GLS flow assuming RTL simulation and Synthesis is done.
 ```bash
-iverilog <path to primitves.v> <path to .lib> <netlist filename> <tb filename>
+iverilog <path to primitves.v> <path to std_cell_verilog_models.v> <netlist filename> <tb filename>
 ./a.out
 gtkwave <vcd file name>
 ```
